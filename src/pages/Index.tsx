@@ -46,8 +46,7 @@ const Index = () => {
           <div className="max-w-2xl">
             <p className="text-primary font-medium mb-4">Monitor Your Energy</p>
             <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              Smarter energy,<br />
-              <span className="text-primary">brighter every day</span>
+              <span className="text-primary">Home Energy Tracker</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
               See your daily, weekly, and monthly energy use at a glance. Get instant alerts if you're using more than usual, and celebrate every time you save. Track your progress, discover easy tips to cut costs, and join a community that cheers you on—one watt at a time.

@@ -39,7 +39,7 @@ const generateMonthlyData = () => {
 const Dashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [user, setUser] = useState<{ userId: string; meterNumber: string; apiKey: string } | null>(null);
+  const [user, setUser] = useState<{ userId: string; meterNumber: string; apiKey: string; state?: string } | null>(null);
   const [limit, setLimit] = useState(20);
   const [currentUsage, setCurrentUsage] = useState(9.64);
   const [dailyTotal, setDailyTotal] = useState(15.37);
@@ -202,6 +202,7 @@ const Dashboard = () => {
             weeklyConsumption={weeklyTotal}
             monthlyConsumption={monthlyTotal}
             ratePerUnit={6.5}
+            userState={user?.state}
           />
           <EnergyTips />
         </div>
