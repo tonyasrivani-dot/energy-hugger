@@ -4,7 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Zap, Eye, EyeOff } from "lucide-react";
+
+const INDIAN_STATES = [
+  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Delhi", "Goa", "Gujarat", 
+  "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", 
+  "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", 
+  "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
+];
 import { useToast } from "@/hooks/use-toast";
 
 const Auth = () => {
@@ -17,6 +25,7 @@ const Auth = () => {
     confirmPassword: "",
     meterNumber: "",
     apiKey: "",
+    state: "",
   });
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -56,12 +65,23 @@ const Auth = () => {
       return;
     }
 
+    if (!isLogin && !formData.state) {
+      toast({
+        title: "Error",
+        description: "Please select your state",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
+
     // Simulate auth - store in localStorage for demo
     setTimeout(() => {
       localStorage.setItem("energyUser", JSON.stringify({
         userId: formData.userId,
         meterNumber: formData.meterNumber || localStorage.getItem("meterNumber") || "MTR-" + Math.random().toString(36).substr(2, 9).toUpperCase(),
         apiKey: formData.apiKey || "demo-api-key",
+        state: formData.state || "Maharashtra",
       }));
       
       toast({
@@ -147,6 +167,20 @@ const Auth = () => {
                     onChange={(e) => setFormData({ ...formData, meterNumber: e.target.value })}
                     className="transition-all focus:shadow-energy"
                   />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="state">State *</Label>
+                  <Select value={formData.state} onValueChange={(value) => setFormData({ ...formData, state: value })}>
+                    <SelectTrigger className="transition-all focus:shadow-energy">
+                      <SelectValue placeholder="Select your state" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {INDIAN_STATES.map((state) => (
+                        <SelectItem key={state} value={state}>{state}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="space-y-2">
