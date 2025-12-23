@@ -10,6 +10,7 @@ import CostCalculator from "@/components/CostCalculator";
 import ConsumptionLimit from "@/components/ConsumptionLimit";
 import FeedbackForm from "@/components/FeedbackForm";
 import PowerControl from "@/components/PowerControl";
+import EnergyBadge from "@/components/EnergyBadge";
 import { useToast } from "@/hooks/use-toast";
 
 // Simulated data - in production this would come from API
@@ -199,6 +200,9 @@ const Dashboard = () => {
           weeklyData={weeklyData} 
           monthlyData={monthlyData}
         />
+
+        {/* Energy Badge */}
+        <EnergyBadge monthlyConsumption={monthlyTotal} />
 
         {/* Cost Calculator and Tips */}
         <div className="grid lg:grid-cols-2 gap-6">
