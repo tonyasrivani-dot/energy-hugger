@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Award } from "lucide-react";
-import logo from "@/assets/logo.jpeg";
+import clogo from "@/assets/clogo.png";
 
 interface EnergyBadgeProps {
   monthlyConsumption: number;
@@ -12,10 +12,8 @@ interface BadgeInfo {
   level: BadgeLevel;
   name: string;
   description: string;
-  bgColor: string;
+  ringColor: string;
   textColor: string;
-  borderColor: string;
-  showLogo: boolean;
 }
 
 const getBadgeInfo = (consumption: number): BadgeInfo => {
@@ -24,60 +22,48 @@ const getBadgeInfo = (consumption: number): BadgeInfo => {
       level: 'gold',
       name: 'Gold Energy Saver',
       description: 'Outstanding! You are an exemplary energy saver.',
-      bgColor: 'bg-yellow-100',
-      textColor: 'text-yellow-800',
-      borderColor: 'border-yellow-400',
-      showLogo: true,
+      ringColor: 'ring-yellow-400 ring-offset-yellow-100',
+      textColor: 'text-yellow-600',
     };
   } else if (consumption <= 200) {
     return {
       level: 'skyblue',
       name: 'Sky Blue Efficient',
       description: 'Great job! Your consumption is well managed.',
-      bgColor: 'bg-sky-100',
-      textColor: 'text-sky-800',
-      borderColor: 'border-sky-400',
-      showLogo: false,
+      ringColor: 'ring-sky-400 ring-offset-sky-100',
+      textColor: 'text-sky-600',
     };
   } else if (consumption <= 300) {
     return {
       level: 'bronze',
       name: 'Bronze Conscious',
       description: 'Good effort! Room for improvement.',
-      bgColor: 'bg-orange-100',
-      textColor: 'text-orange-800',
-      borderColor: 'border-orange-400',
-      showLogo: false,
+      ringColor: 'ring-orange-400 ring-offset-orange-100',
+      textColor: 'text-orange-600',
     };
   } else if (consumption <= 400) {
     return {
       level: 'grey',
       name: 'Grey Average',
       description: 'Average consumption. Consider reducing usage.',
-      bgColor: 'bg-gray-100',
-      textColor: 'text-gray-800',
-      borderColor: 'border-gray-400',
-      showLogo: false,
+      ringColor: 'ring-gray-400 ring-offset-gray-100',
+      textColor: 'text-gray-600',
     };
   } else if (consumption <= 500) {
     return {
       level: 'warning',
       name: 'Orange Warning',
       description: 'High consumption! Take action to reduce.',
-      bgColor: 'bg-orange-200',
-      textColor: 'text-orange-900',
-      borderColor: 'border-orange-500',
-      showLogo: false,
+      ringColor: 'ring-orange-500 ring-offset-orange-200',
+      textColor: 'text-orange-700',
     };
   } else {
     return {
       level: 'danger',
       name: 'Red Danger',
       description: 'Critical! Immediate action required to reduce consumption.',
-      bgColor: 'bg-red-100',
-      textColor: 'text-red-800',
-      borderColor: 'border-red-500',
-      showLogo: false,
+      ringColor: 'ring-red-500 ring-offset-red-100',
+      textColor: 'text-red-600',
     };
   }
 };
@@ -95,19 +81,15 @@ const EnergyBadge = ({ monthlyConsumption }: EnergyBadgeProps) => {
       </CardHeader>
       <CardContent>
         <div className="flex flex-col items-center gap-4">
-          {/* Badge Display */}
+          {/* Badge Display with Logo */}
           <div 
-            className={`relative w-32 h-32 rounded-full ${badge.bgColor} ${badge.borderColor} border-4 flex items-center justify-center shadow-lg`}
+            className={`relative w-32 h-32 rounded-full ring-8 ring-offset-4 ${badge.ringColor} flex items-center justify-center shadow-lg overflow-hidden bg-background`}
           >
-            {badge.showLogo ? (
-              <img 
-                src={logo} 
-                alt="Home Energy Tracker" 
-                className="w-20 h-20 rounded-full object-cover"
-              />
-            ) : (
-              <Award className={`w-16 h-16 ${badge.textColor}`} />
-            )}
+            <img 
+              src={clogo} 
+              alt="Home Energy Tracker" 
+              className="w-28 h-28 object-contain"
+            />
           </div>
 
           {/* Badge Info */}
@@ -128,27 +110,27 @@ const EnergyBadge = ({ monthlyConsumption }: EnergyBadgeProps) => {
             <p className="text-xs text-muted-foreground text-center mb-3">Badge Levels</p>
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
               <div className="flex flex-col items-center gap-1">
-                <div className="w-6 h-6 rounded-full bg-yellow-400 border-2 border-yellow-500" />
+                <div className="w-6 h-6 rounded-full bg-yellow-400 ring-2 ring-yellow-500" />
                 <span className="text-[10px] text-muted-foreground">Gold</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <div className="w-6 h-6 rounded-full bg-sky-400 border-2 border-sky-500" />
+                <div className="w-6 h-6 rounded-full bg-sky-400 ring-2 ring-sky-500" />
                 <span className="text-[10px] text-muted-foreground">Sky Blue</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <div className="w-6 h-6 rounded-full bg-orange-400 border-2 border-orange-500" />
+                <div className="w-6 h-6 rounded-full bg-orange-400 ring-2 ring-orange-500" />
                 <span className="text-[10px] text-muted-foreground">Bronze</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <div className="w-6 h-6 rounded-full bg-gray-400 border-2 border-gray-500" />
+                <div className="w-6 h-6 rounded-full bg-gray-400 ring-2 ring-gray-500" />
                 <span className="text-[10px] text-muted-foreground">Grey</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <div className="w-6 h-6 rounded-full bg-orange-500 border-2 border-orange-600" />
+                <div className="w-6 h-6 rounded-full bg-orange-500 ring-2 ring-orange-600" />
                 <span className="text-[10px] text-muted-foreground">Warning</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <div className="w-6 h-6 rounded-full bg-red-500 border-2 border-red-600" />
+                <div className="w-6 h-6 rounded-full bg-red-500 ring-2 ring-red-600" />
                 <span className="text-[10px] text-muted-foreground">Danger</span>
               </div>
             </div>
