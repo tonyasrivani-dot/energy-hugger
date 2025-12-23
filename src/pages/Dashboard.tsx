@@ -9,6 +9,7 @@ import EnergyTips from "@/components/EnergyTips";
 import CostCalculator from "@/components/CostCalculator";
 import ConsumptionLimit from "@/components/ConsumptionLimit";
 import FeedbackForm from "@/components/FeedbackForm";
+import PowerControl from "@/components/PowerControl";
 import { useToast } from "@/hooks/use-toast";
 
 // Simulated data - in production this would come from API
@@ -181,6 +182,9 @@ const Dashboard = () => {
             variant="success"
           />
         </div>
+
+        {/* Power Control */}
+        <PowerControl hasFluctuation={hasFluctuation} />
 
         {/* Consumption Limit */}
         <ConsumptionLimit 
