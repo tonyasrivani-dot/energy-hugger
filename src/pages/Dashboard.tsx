@@ -8,6 +8,7 @@ import EnergyChart from "@/components/EnergyChart";
 import EnergyTips from "@/components/EnergyTips";
 import CostCalculator from "@/components/CostCalculator";
 import ConsumptionLimit from "@/components/ConsumptionLimit";
+import FeedbackForm from "@/components/FeedbackForm";
 import { useToast } from "@/hooks/use-toast";
 
 // Simulated data - in production this would come from API
@@ -135,8 +136,8 @@ const Dashboard = () => {
           {hasFluctuation && (
             <AlertBanner 
               type="warning" 
-              title="Unusual Fluctuation Detected" 
-              description="We noticed unusual power consumption patterns. This might indicate a faulty appliance or equipment malfunction."
+              title="⚡ Power Fluctuation Alert!" 
+              description="Please power off your devices immediately! Unusual power fluctuation detected. This could damage your appliances. Turn off non-essential devices and check your electrical connections."
             />
           )}
           
@@ -206,6 +207,9 @@ const Dashboard = () => {
           />
           <EnergyTips />
         </div>
+
+        {/* Feedback Section */}
+        <FeedbackForm />
       </main>
     </div>
   );
