@@ -11,6 +11,7 @@ import ConsumptionLimit from "@/components/ConsumptionLimit";
 import FeedbackForm from "@/components/FeedbackForm";
 import PowerControl from "@/components/PowerControl";
 import EnergyBadge from "@/components/EnergyBadge";
+import PremiumSubscription from "@/components/PremiumSubscription";
 import { useToast } from "@/hooks/use-toast";
 
 // Simulated data - in production this would come from API
@@ -215,6 +216,9 @@ const Dashboard = () => {
           />
           <EnergyTips />
         </div>
+
+        {/* Premium Subscription */}
+        <PremiumSubscription />
 
         {/* Feedback Section */}
         <FeedbackForm />
